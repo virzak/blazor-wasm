@@ -1,25 +1,10 @@
 ﻿@inject MainModel Model
-    Age: <span style="cursor: pointer" @onclick="@(() => Decrement(true))">
+    Age: <span style="cursor: pointer" @onclick="@(() => Model.DecrementCommand.Execute(true))">
     <strong>&nbsp;&lt;&nbsp;</strong>
 </span>
 <input type="range" min="13" max="120" @bind-value="Model.Age"
        @bind-value:event="oninput" />
-<span style="cursor: pointer" @onclick="@(() => Decrement(false))">
+<span style="cursor: pointer" @onclick="@(() => Model.DecrementCommand.Execute(false))">
     <strong>&nbsp;&gt;&nbsp;</strong>
 </span>
 <span>@Model.Age</span>
-
-@code {
-
-    void Decrement(bool decrement)
-    {
-        if (decrement && Model.Age > 13)
-        {
-            Model.Age -= 1;
-        }
-        if (!decrement && Model.Age < 120)
-        {
-            Model.Age += 1;
-        }
-    }
-}
